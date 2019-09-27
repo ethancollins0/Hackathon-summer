@@ -22,8 +22,11 @@ app.get('/', (req, res) => {
     res.json({deaths})
 })
 
-
-
+app.post('/', (req, res) => {
+    const {image, name, date, cause, location} = req.body
+    deaths.push({image, name, date, cause, location})
+    res.json(deaths[deaths.length - 1])
+})
 
 
 app.listen(8080, () => {

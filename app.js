@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-// app.use(cors)
+app.use(cors())
 
 app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
@@ -19,15 +19,15 @@ const deaths = [
 
 
 app.get('/', (req, res) => {
-    res.json({deaths})
+    res.json(deaths)
 })
 
 app.post('/', (req, res) => {
     const {image, name, date, cause, location} = req.body
     deaths.push({image, name, date, cause, location})
+    console.log(deaths[deaths.length - 1])
     res.json(deaths[deaths.length - 1])
 })
-
 
 app.listen(8080, () => {
     console.log('listening...')
